@@ -1,0 +1,145 @@
+:root {
+  --bg: #10141b;
+  --panel: #181f2a;
+  --panel-2: #1f2937;
+  --text: #e5e9f0;
+  --muted: #9aa5b5;
+  --blue: #2a5286;
+  --blue-hi: #3a6cae;
+  --red: #85382d;
+  --red-hi: #a8483a;
+  --gold: #d8a94e;
+  --border: rgba(255, 255, 255, 0.12);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", sans-serif;
+  line-height: 1.75;
+}
+
+a { color: var(--blue-hi); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* 顶部众筹条 */
+.crowdfund-bar {
+  background: linear-gradient(90deg, #3d2c10, #57400f);
+  border-bottom: 1px solid var(--gold);
+  padding: 10px 16px;
+  text-align: center;
+  font-size: 15px;
+}
+.crowdfund-bar strong { color: var(--gold); }
+.crowdfund-bar .cta {
+  display: inline-block;
+  margin-left: 12px;
+  padding: 2px 14px;
+  border: 1px solid var(--gold);
+  border-radius: 14px;
+  color: var(--gold);
+}
+.crowdfund-bar .cta:hover { background: rgba(216, 169, 78, 0.15); text-decoration: none; }
+
+/* 导航 */
+nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 14px 32px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+}
+nav .brand { font-size: 18px; font-weight: bold; color: var(--text); }
+nav a { color: var(--muted); }
+nav a.active, nav a:hover { color: var(--text); text-decoration: none; }
+nav .spacer { flex: 1; }
+#lang-select {
+  background: var(--panel-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* 主体 */
+main { max-width: 960px; margin: 0 auto; padding: 40px 24px 64px; }
+
+.hero { text-align: center; padding: 24px 0 8px; }
+.hero img {
+  max-width: 100%;
+  width: 860px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+.hero h1 { margin-top: 24px; font-size: 34px; letter-spacing: 6px; }
+.hero p.tagline { color: var(--muted); font-size: 17px; margin-top: 8px; }
+
+section { margin-top: 48px; }
+section h2 {
+  font-size: 24px;
+  border-left: 4px solid var(--blue-hi);
+  padding-left: 12px;
+  margin-bottom: 16px;
+}
+
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+}
+.card h3 { font-size: 18px; margin-bottom: 8px; }
+.card p { color: var(--muted); font-size: 15px; }
+.card.blue h3 { color: #7ea9dd; }
+.card.red h3 { color: #d98a7c; }
+.card.gold h3 { color: var(--gold); }
+
+/* 众筹区块 */
+#crowdfunding .panel {
+  background: linear-gradient(135deg, #241b0a, #2e2410);
+  border: 1px solid var(--gold);
+  border-radius: 12px;
+  padding: 28px;
+}
+#crowdfunding .panel h3 { color: var(--gold); font-size: 20px; margin-bottom: 12px; }
+#crowdfunding ul { margin: 12px 0 20px 24px; color: var(--muted); }
+.btn-gold {
+  display: inline-block;
+  background: var(--gold);
+  color: #1a1408;
+  font-weight: bold;
+  padding: 10px 32px;
+  border-radius: 8px;
+}
+.btn-gold:hover { background: #e8bd66; text-decoration: none; }
+
+/* 条款页 */
+.legal h1 { font-size: 28px; margin-bottom: 8px; }
+.legal .updated { color: var(--muted); font-size: 14px; margin-bottom: 32px; }
+.legal h2 { font-size: 20px; margin: 32px 0 12px; border-left: 4px solid var(--blue-hi); padding-left: 12px; }
+.legal p, .legal li { color: #c6cdd8; font-size: 15px; }
+.legal ul, .legal ol { margin: 8px 0 8px 28px; }
+.legal .highlight {
+  background: rgba(168, 72, 58, 0.12);
+  border: 1px solid var(--red-hi);
+  border-radius: 10px;
+  padding: 18px 20px;
+  margin: 16px 0;
+}
+.legal .highlight strong { color: #d98a7c; }
+.legal .highlight p + p { margin-top: 12px; }
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 24px 32px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+}
+footer a { color: var(--muted); margin: 0 10px; }

@@ -10,6 +10,7 @@ window.I18N.en = {
       text: ' — support the ongoing development of SandTable Club and unlock multiplayer servers and more creation tools',
       cta: 'Learn more →',
     },
+    contactLabel: 'Contact us',
     footerCopy: '© 2026 SandTable Club sandtable.club — Creators are solely responsible for their user-generated content.',
   },
   home: {

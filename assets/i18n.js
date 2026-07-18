@@ -69,6 +69,8 @@
       '<div><a href="' + withLang('terms.html') + '">' + c.nav.terms + '</a> · ' +
       '<a href="' + withLang('disclaimer.html') + '">' + c.nav.disclaimer + '</a> · ' +
       '<a href="' + withLang('index.html#crowdfunding') + '">' + c.nav.crowd + '</a></div>' +
+      '<div style="margin-top: 8px;">' + c.contactLabel + ': ' +
+      '<a href="mailto:mingyvzhong@outlook.com">mingyvzhong@outlook.com</a></div>' +
       '<div style="margin-top: 8px;">' + c.footerCopy + '</div>';
   }
 

@@ -10,6 +10,7 @@ window.I18N.cht = {
       text: ' — 支持《沙盤俱樂部》持續開發，解鎖連線伺服器與更多創作工具',
       cta: '瞭解詳情 →',
     },
+    contactLabel: '聯絡我們',
     footerCopy: '© 2026 沙盤俱樂部 sandtable.club — 使用者創作內容的權責由創作者自行承擔。',
   },
   home: {

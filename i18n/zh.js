@@ -10,6 +10,7 @@ window.I18N.zh = {
       text: ' — 支持《沙盘俱乐部》持续开发，解锁联机服务器与更多创作工具',
       cta: '了解详情 →',
     },
+    contactLabel: '联系我们',
     footerCopy: '© 2026 沙盘俱乐部 sandtable.club — 用户创作内容的权责由创作者自行承担。',
   },
   home: {

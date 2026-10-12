@@ -46,8 +46,9 @@ a:hover { text-decoration: underline; }
 /* 导航 */
 nav {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 24px;
+  gap: 8px 24px;
   padding: 14px 32px;
   background: var(--panel);
   border-bottom: 1px solid var(--border);
@@ -143,3 +144,22 @@ footer {
   font-size: 14px;
 }
 footer a { color: var(--muted); margin: 0 10px; }
+
+/* 在线游戏 */
+.page-title { font-size: 28px; margin-bottom: 8px; }
+.page-intro { color: var(--muted); margin-bottom: 28px; }
+.muted { color: var(--muted); font-size: 14px; }
+.games { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.game {
+  display: flex;
+  gap: 16px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+}
+.game .tag { color: var(--gold); }
+.game-body { min-width: 0; }
+.game h3 { font-size: 18px; margin-bottom: 2px; overflow-wrap: anywhere; }
+.game .muted { margin-bottom: 12px; }
+.game .btn-gold { padding: 6px 24px; }

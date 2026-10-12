@@ -4,7 +4,7 @@ window.I18N.cht = {
   langName: '繁體中文',
   common: {
     brand: '沙盤俱樂部',
-    nav: { home: '首頁', crowd: '眾籌', terms: '使用者協議', disclaimer: '免責聲明' },
+    nav: { home: '首頁', games: '線上遊戲', crowd: '眾籌', terms: '使用者協議', disclaimer: '免責聲明' },
     crowdBar: {
       strong: '眾籌進行中',
       text: ' — 支持《沙盤俱樂部》持續開發，解鎖連線伺服器與更多創作工具',
@@ -43,6 +43,18 @@ window.I18N.cht = {
       btnTitle: '眾籌頁面即將上線',
       note: '眾籌入口即將開放，敬請關注本頁面更新。',
     },
+  },
+  games: {
+    title: '線上遊戲 - 沙盤俱樂部',
+    heading: '線上遊戲',
+    intro: '下面這些遊戲點開就能在瀏覽器裡玩，不用安裝。第一次開啟要先下載遊戲檔案，之後瀏覽器會記住、再開就快了。請使用電腦上的新版 Chrome、Edge 或 Firefox。',
+    play: '開始遊戲',
+    author: '作者 {a}',
+    login: '需要登入',
+    updated: '更新於 {d}',
+    loading: '正在讀取遊戲列表……',
+    empty: '暫時還沒有上架的遊戲，敬請期待。',
+    error: '遊戲列表讀取失敗，請稍後重新整理再試。',
   },
   terms: {
     title: '使用者協議 - 沙盤俱樂部',

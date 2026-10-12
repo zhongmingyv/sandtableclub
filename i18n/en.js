@@ -4,7 +4,7 @@ window.I18N.en = {
   langName: 'English',
   common: {
     brand: 'SandTable Club',
-    nav: { home: 'Home', crowd: 'Crowdfunding', terms: 'Terms of Service', disclaimer: 'Disclaimer' },
+    nav: { home: 'Home', games: 'Play Online', crowd: 'Crowdfunding', terms: 'Terms of Service', disclaimer: 'Disclaimer' },
     crowdBar: {
       strong: 'Crowdfunding live',
       text: ' — support the ongoing development of SandTable Club and unlock multiplayer servers and more creation tools',
@@ -43,6 +43,18 @@ window.I18N.en = {
       btnTitle: 'Crowdfunding page coming soon',
       note: 'The crowdfunding entry opens soon — watch this page for updates.',
     },
+  },
+  games: {
+    title: 'Play Online - SandTable Club',
+    heading: 'Play Online',
+    intro: 'These games run right in your browser — nothing to install. The first launch downloads the game files; after that your browser keeps them and it starts much faster. Please use a recent desktop Chrome, Edge or Firefox.',
+    play: 'Play',
+    author: 'by {a}',
+    login: 'Login required',
+    updated: 'Updated {d}',
+    loading: 'Loading games…',
+    empty: 'No games are available yet — stay tuned.',
+    error: 'Could not load the game list. Please refresh and try again later.',
   },
   terms: {
     title: 'Terms of Service - SandTable Club',

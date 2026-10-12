@@ -4,7 +4,7 @@ window.I18N.zh = {
   langName: '简体中文',
   common: {
     brand: '沙盘俱乐部',
-    nav: { home: '首页', crowd: '众筹', terms: '用户协议', disclaimer: '免责声明' },
+    nav: { home: '首页', games: '在线游戏', crowd: '众筹', terms: '用户协议', disclaimer: '免责声明' },
     crowdBar: {
       strong: '众筹进行中',
       text: ' — 支持《沙盘俱乐部》持续开发，解锁联机服务器与更多创作工具',
@@ -43,6 +43,18 @@ window.I18N.zh = {
       btnTitle: '众筹页面即将上线',
       note: '众筹入口即将开放，敬请关注本页面更新。',
     },
+  },
+  games: {
+    title: '在线游戏 - 沙盘俱乐部',
+    heading: '在线游戏',
+    intro: '下面这些游戏点开就能在浏览器里玩，不用安装。第一次打开要先下载游戏文件，之后浏览器会记住、再开就快了。请用电脑上的新版 Chrome、Edge 或 Firefox。',
+    play: '开始游戏',
+    author: '作者 {a}',
+    login: '需要登录',
+    updated: '更新于 {d}',
+    loading: '正在读取游戏列表……',
+    empty: '暂时还没有上架的游戏，敬请期待。',
+    error: '游戏列表读取失败，请稍后刷新重试。',
   },
   terms: {
     title: '用户协议 - 沙盘俱乐部',

@@ -18,6 +18,9 @@
     return 'en';
   }
 
+  // 官方服务器：在线游戏的列表与游戏本身都在它上面（/web-games、/play/{游戏编号}/）
+  var API = 'https://api.sandtable.club';
+
   var cur = detectLang();
   var page = document.body.getAttribute('data-page');
 
@@ -39,6 +42,7 @@
 
     var links = [
       { href: 'index.html', key: 'home', active: page === 'home' },
+      { href: 'games.html', key: 'games', active: page === 'games' },
       { href: 'index.html#crowdfunding', key: 'crowd', active: false },
       { href: 'terms.html', key: 'terms', active: page === 'terms' },
       { href: 'disclaimer.html', key: 'disclaimer', active: page === 'disclaimer' },
@@ -103,6 +107,50 @@
     if (meta) meta.setAttribute('content', h.metaDesc);
   }
 
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  // 在线游戏：列表只取一次，切语言时用同一份重画
+  var games = null; // null = 还在取；'error' = 取不到；否则是列表
+  var gamesRequested = false;
+
+  function renderGames() {
+    var g = T().games;
+    var html = '<h1 class="page-title">' + g.heading + '</h1><p class="page-intro">' + g.intro + '</p>';
+    if (games === null) html += '<p class="muted">' + g.loading + '</p>';
+    else if (games === 'error') html += '<p class="muted">' + g.error + '</p>';
+    else if (games.length === 0) html += '<p class="muted">' + g.empty + '</p>';
+    else {
+      html += '<div class="games">';
+      for (var i = 0; i < games.length; i++) {
+        var x = games[i];
+        var url = API + x.playPath;
+        var meta = [];
+        if (x.era) meta.push(esc(x.era));
+        meta.push(g.author.replace('{a}', esc(x.ownerName)));
+        meta.push(g.updated.replace('{d}', new Date(x.updatedAt).toLocaleDateString(HTML_LANG[cur])));
+        html += '<div class="game"><div class="game-body"><h3>' + esc(x.title) + '</h3>' +
+          '<p class="muted">' + meta.join(' · ') + (x.loginRequired ? ' · <span class="tag">' + g.login + '</span>' : '') + '</p>' +
+          '<a class="btn-gold" href="' + esc(url) + '" target="_blank" rel="noopener">' + g.play + '</a></div></div>';
+      }
+      html += '</div>';
+    }
+    var main = document.getElementById('main');
+    main.className = '';
+    main.innerHTML = html;
+
+    if (gamesRequested) return;
+    gamesRequested = true;
+    fetch(API + '/web-games')
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function (d) { games = d.items || []; })
+      .catch(function () { games = 'error'; })
+      .then(renderGames);
+  }
+
   function blockHtml(b) {
     if (b.t === 'p') return '<p>' + b.h + '</p>';
     if (b.t === 'ol' || b.t === 'ul') {
@@ -135,6 +183,7 @@
     document.documentElement.lang = HTML_LANG[cur];
     renderChrome();
     if (page === 'home') renderHome();
+    else if (page === 'games') renderGames();
     else renderLegal(page);
     document.title = (page === 'home' ? T().home : T()[page]).title;
   }

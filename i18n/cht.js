@@ -5,6 +5,7 @@ window.I18N.cht = {
   common: {
     brand: '沙盤俱樂部',
     nav: { home: '首頁', games: '線上遊戲', terms: '使用者協議', disclaimer: '免責聲明' },
+    qqLabel: 'QQ 群',
     contactLabel: '聯絡我們',
     footerCopy: '© 2026 沙盤俱樂部 sandtable.club — 使用者創作內容的權責由創作者自行承擔。',
   },
@@ -21,6 +22,16 @@ window.I18N.cht = {
     shots: ['地圖編輯器', '戰役推演', '規則資料表'],
     strip: '喜歡這些戰役？完整的編輯器與連線對戰即將登陸 Steam。',
     stripBtn: '加入願望清單',
+  },
+  community: {
+    title: '加入玩家交流群',
+    lead: '和一群熱愛兵棋與沙盤推演的朋友一起聊規則、曬戰役、約對戰。新版本消息、測試資格和開發進展也會第一時間在群裡發佈，開發者本人就在群裡，歡迎來提建議、回報 Bug。',
+    points: ['討論玩法與規則設計', '分享自製戰役與地圖', '約人連線對戰', '搶先獲得測試資格'],
+    groupLabel: 'QQ 群號',
+    copy: '複製群號',
+    copied: '已複製 ✓',
+    scanTip: '打開手機 QQ「掃一掃」，或在 QQ 中搜尋群號加入',
+    qrAlt: '沙盤俱樂部 QQ 群二維碼',
   },
   home: {
     title: '沙盤俱樂部 - 戰役模擬器 · 兵棋對戰平台',

@@ -5,6 +5,7 @@ window.I18N.zh = {
   common: {
     brand: '沙盘俱乐部',
     nav: { home: '首页', games: '在线游戏', terms: '用户协议', disclaimer: '免责声明' },
+    qqLabel: 'QQ 群',
     contactLabel: '联系我们',
     footerCopy: '© 2026 沙盘俱乐部 sandtable.club — 用户创作内容的权责由创作者自行承担。',
   },
@@ -21,6 +22,16 @@ window.I18N.zh = {
     shots: ['地图编辑器', '战役推演', '规则数据表'],
     strip: '喜欢这些战役？完整的编辑器与联机对战即将登陆 Steam。',
     stripBtn: '加入愿望单',
+  },
+  community: {
+    title: '加入玩家交流群',
+    lead: '和一群热爱兵棋与沙盘推演的朋友一起聊规则、晒战役、约对战。新版本消息、测试资格和开发进展也会第一时间在群里发布，开发者本人就在群里，欢迎来提建议、报 Bug。',
+    points: ['讨论玩法与规则设计', '分享自制战役与地图', '约人联机对战', '抢先获得测试资格'],
+    groupLabel: 'QQ 群号',
+    copy: '复制群号',
+    copied: '已复制 ✓',
+    scanTip: '打开手机 QQ「扫一扫」，或在 QQ 中搜索群号加入',
+    qrAlt: '沙盘俱乐部 QQ 群二维码',
   },
   home: {
     title: '沙盘俱乐部 - 战役模拟器 · 兵棋对战平台',

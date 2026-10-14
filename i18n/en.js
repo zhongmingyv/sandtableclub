@@ -5,6 +5,7 @@ window.I18N.en = {
   common: {
     brand: 'SandTable Club',
     nav: { home: 'Home', games: 'Play Online', terms: 'Terms of Service', disclaimer: 'Disclaimer' },
+    qqLabel: 'QQ group',
     contactLabel: 'Contact us',
     footerCopy: '© 2026 SandTable Club sandtable.club — Creators are solely responsible for their user-generated content.',
   },
@@ -21,6 +22,16 @@ window.I18N.en = {
     shots: ['Map editor', 'Campaign in play', 'Rule tables'],
     strip: 'Enjoying these campaigns? The full editor and online battles are coming to Steam.',
     stripBtn: 'Wishlist now',
+  },
+  community: {
+    title: 'Join the player community',
+    lead: 'Talk rules, show off your campaigns and find opponents with fellow wargamers. New releases, playtest invites and dev updates land in the group first — and the developer is there in person, so bring your ideas and bug reports.',
+    points: ['Discuss gameplay & rule design', 'Share your campaigns & maps', 'Find online opponents', 'Early playtest access'],
+    groupLabel: 'QQ group number',
+    copy: 'Copy number',
+    copied: 'Copied ✓',
+    scanTip: 'Scan with the QQ mobile app, or search the group number in QQ',
+    qrAlt: 'SandTable Club QQ group QR code',
   },
   home: {
     title: 'SandTable Club - Campaign Simulator & Wargame Platform',

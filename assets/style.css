@@ -349,3 +349,84 @@ nav a.nav-steam:hover {
   .btn-steam::after, .steam-badge i { animation: none; }
   .btn-steam, .nav-steam, .steam-capsule, .steam-shot img { transition: none; }
 }
+
+/* QQ 群 */
+.community-panel {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 32px;
+  align-items: center;
+  padding: 28px;
+  border: 1px solid rgba(126, 169, 221, 0.35);
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(6, 191, 255, 0.14), transparent 55%),
+    radial-gradient(circle at 100% 100%, rgba(167, 139, 250, 0.12), transparent 55%),
+    var(--panel);
+}
+.community-qr {
+  padding: 12px;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 16px 40px -14px rgba(6, 191, 255, 0.55);
+}
+.community-qr img { display: block; width: 100%; height: auto; }
+.community-lead { color: #c6cdd8; font-size: 15px; }
+.community-points {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 6px 16px;
+  list-style: none;
+  margin: 14px 0 18px;
+}
+.community-points li { position: relative; padding-left: 20px; color: var(--text); font-size: 14px; }
+.community-points li::before {
+  content: '';
+  position: absolute;
+  left: 2px; top: 0.65em;
+  width: 8px; height: 8px;
+  border-radius: 2px;
+  background: linear-gradient(135deg, #4fd8eb, #a78bfa);
+  transform: rotate(45deg);
+}
+.community-group {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  padding: 10px 12px 10px 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.25);
+}
+.community-label { color: var(--muted); font-size: 14px; }
+.community-num {
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-variant-numeric: tabular-nums;
+  background: linear-gradient(90deg, #4fd8eb, #7ea9ff, #b69cf7);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.btn-copy {
+  padding: 6px 16px;
+  border: 1px solid rgba(126, 169, 221, 0.6);
+  border-radius: 8px;
+  background: rgba(58, 108, 174, 0.25);
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.btn-copy:hover { background: rgba(58, 108, 174, 0.45); }
+.btn-copy.copied { border-color: #4ade80; background: rgba(74, 222, 128, 0.18); color: #bbf7d0; }
+.community-tip { margin-top: 10px; color: var(--muted); font-size: 13px; }
+.footer-sep { margin-right: 10px; }
+
+@media (max-width: 720px) {
+  .community-panel { grid-template-columns: minmax(0, 1fr); padding: 20px 16px; gap: 20px; }
+  .community-qr { width: 220px; max-width: 100%; margin: 0 auto; }
+}

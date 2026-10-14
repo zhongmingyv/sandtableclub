@@ -21,6 +21,17 @@
   // 官方服务器：在线游戏的列表与游戏本身都在它上面（/web-games、/play/{游戏编号}/）
   var API = 'https://api.sandtable.club';
 
+  // Steam 商店页；utm_campaign 区分入口，Steamworks 的 UTM 统计里能看到各入口带来的访问
+  var STEAM = 'https://store.steampowered.com/app/5099480/SandTableClub/';
+  var STEAM_LOGO = '<svg class="steam-logo" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.004.105.004.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 11.999-5.373 11.999-12S18.605 0 11.979 0zM7.54 18.21l-1.473-.61c.262.543.714.999 1.314 1.25 1.297.539 2.793-.076 3.332-1.375.263-.63.264-1.319.005-1.949s-.75-1.121-1.377-1.383c-.624-.26-1.29-.249-1.878-.03l1.523.63c.956.4 1.409 1.5 1.009 2.455-.397.957-1.497 1.41-2.454 1.012H7.54zm11.415-9.303c0-1.662-1.353-3.015-3.015-3.015-1.665 0-3.015 1.353-3.015 3.015 0 1.665 1.35 3.015 3.015 3.015 1.663 0 3.015-1.35 3.015-3.015zm-5.273-.005c0-1.252 1.013-2.266 2.265-2.266 1.249 0 2.266 1.014 2.266 2.266 0 1.251-1.017 2.265-2.266 2.265-1.253 0-2.265-1.014-2.265-2.265z"/></svg>';
+
+  function steamUrl(from) {
+    return STEAM + '?utm_source=sandtable.club&utm_medium=web&utm_campaign=' + from;
+  }
+  function steamLink(from, cls, inner) {
+    return '<a class="' + cls + '" href="' + steamUrl(from) + '" target="_blank" rel="noopener">' + inner + '</a>';
+  }
+
   var cur = detectLang();
   var page = document.body.getAttribute('data-page');
 
@@ -47,7 +58,8 @@
       navHtml += '<a href="' + withLang(links[i].href) + '"' + (links[i].active ? ' class="active"' : '') + '>' +
         c.nav[links[i].key] + '</a>';
     }
-    navHtml += '<span class="spacer"></span><select id="lang-select" aria-label="Language">';
+    navHtml += '<span class="spacer"></span>' + steamLink('nav', 'nav-steam', STEAM_LOGO + '<span>' + T().steam.nav + '</span>') +
+      '<select id="lang-select" aria-label="Language">';
     for (var j = 0; j < LANGS.length; j++) {
       navHtml += '<option value="' + LANGS[j] + '"' + (LANGS[j] === cur ? ' selected' : '') + '>' +
         window.I18N[LANGS[j]].langName + '</option>';
@@ -79,7 +91,7 @@
       '<img src="assets/sandtableclub.png" alt="' + h.heroAlt + '">' +
       '<h1>' + h.heroTitle + '</h1>' +
       '<p class="tagline">' + h.tagline + '</p>' +
-      '</div>' +
+      '</div>' + steamCta() +
       '<section id="about"><h2>' + h.about.title + '</h2><p>' + h.about.html + '</p>' +
       '<div class="cards" style="margin-top: 20px;">';
     for (var i = 0; i < h.cards.length; i++) {
@@ -92,6 +104,32 @@
     main.innerHTML = html;
     var meta = document.querySelector('meta[name="description"]');
     if (meta) meta.setAttribute('content', h.metaDesc);
+  }
+
+  // 首页的 Steam 愿望单大入口
+  function steamCta() {
+    var s = T().steam;
+    var shots = ['shot_map', 'shot_battle', 'shot_rules'];
+    var html =
+      '<section class="steam-cta">' +
+      '<div class="steam-cta-bg" style="background-image: url(' + s.header + ')"></div>' +
+      '<div class="steam-cta-main">' +
+      steamLink('capsule', 'steam-capsule', '<img src="' + s.header + '" alt="' + s.capsuleAlt + '" width="460" height="215">') +
+      '<div class="steam-cta-body">' +
+      '<span class="steam-badge"><i></i>' + s.badge + '</span>' +
+      '<h2>' + s.title + '</h2>' +
+      '<p>' + s.text + '</p>' +
+      '<ul class="steam-points">';
+    for (var i = 0; i < s.points.length; i++) html += '<li>' + s.points[i] + '</li>';
+    html += '</ul>' +
+      steamLink('home', 'btn-steam', STEAM_LOGO + '<span>' + s.btn + '</span>') +
+      steamLink('home_store', 'steam-store-link', s.store) +
+      '</div></div><div class="steam-shots">';
+    for (var j = 0; j < shots.length; j++) {
+      html += steamLink('shot', 'steam-shot', '<img src="assets/steam/' + shots[j] + '.jpg" alt="' + s.shots[j] +
+        '" loading="lazy" width="600" height="338"><span>' + s.shots[j] + '</span>');
+    }
+    return html + '</div></section>';
   }
 
   function esc(s) {
@@ -127,6 +165,12 @@
       }
       html += '</div>';
     }
+    var s = T().steam;
+    html += '<div class="steam-strip">' +
+      steamLink('games_capsule', 'steam-strip-capsule', '<img src="' + s.header + '" alt="' + s.capsuleAlt + '" width="460" height="215">') +
+      '<p>' + s.strip + '</p>' +
+      steamLink('games', 'btn-steam btn-steam-sm', STEAM_LOGO + '<span>' + s.stripBtn + '</span>') +
+      '</div>';
     var main = document.getElementById('main');
     main.className = '';
     main.innerHTML = html;

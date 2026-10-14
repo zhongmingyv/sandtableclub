@@ -145,3 +145,207 @@ footer a { color: var(--muted); margin: 0 10px; }
 .game h3 { font-size: 18px; margin-bottom: 2px; overflow-wrap: anywhere; }
 .game .muted { margin-bottom: 12px; }
 .game .btn-gold { padding: 6px 24px; }
+
+/* Steam 愿望单入口 */
+.steam-logo { width: 1.25em; height: 1.25em; flex: none; }
+
+nav a.nav-steam {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 14px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #06bfff, #2d73ff);
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.6;
+  box-shadow: 0 4px 14px -4px rgba(45, 115, 255, 0.7);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+nav a.nav-steam:hover {
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px -4px rgba(6, 191, 255, 0.8);
+}
+
+.btn-steam {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 30px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #06bfff, #2d73ff);
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  box-shadow: 0 10px 28px -8px rgba(45, 115, 255, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  transition: transform 0.15s, box-shadow 0.15s, filter 0.15s;
+}
+.btn-steam::after {
+  /* 按钮上周期性扫过的一道光 */
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0; left: -60%;
+  width: 40%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  transform: skewX(-20deg);
+  animation: steam-shine 3.2s ease-in-out infinite;
+}
+.btn-steam:hover {
+  color: #fff;
+  text-decoration: none;
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+  box-shadow: 0 14px 34px -8px rgba(6, 191, 255, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+.btn-steam-sm { padding: 9px 20px; font-size: 15px; }
+@keyframes steam-shine {
+  0%, 55% { left: -60%; }
+  100% { left: 130%; }
+}
+
+.steam-cta {
+  position: relative;
+  overflow: hidden;
+  margin-top: 36px;
+  border: 1px solid rgba(216, 169, 78, 0.55);
+  border-radius: 16px;
+  background: #0d1016;
+  box-shadow: 0 24px 60px -24px rgba(216, 169, 78, 0.35);
+}
+.steam-cta-bg {
+  position: absolute;
+  inset: -40px;
+  background-size: cover;
+  background-position: center;
+  filter: blur(22px) brightness(0.32) saturate(1.3);
+}
+.steam-cta-main {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: 32px;
+  align-items: center;
+  padding: 32px 32px 24px;
+}
+.steam-capsule {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 1px solid rgba(216, 169, 78, 0.6);
+  box-shadow: 0 18px 40px -12px rgba(0, 0, 0, 0.8), 0 0 0 4px rgba(216, 169, 78, 0.08);
+  transition: transform 0.25s;
+}
+.steam-capsule img { display: block; width: 100%; height: auto; }
+.steam-capsule:hover { transform: scale(1.02); }
+.steam-cta-body h2 {
+  border: 0;
+  padding: 0;
+  margin: 12px 0 10px;
+  font-size: 26px;
+  line-height: 1.35;
+  background: linear-gradient(180deg, #ffe7b0, var(--gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.steam-cta-body p { color: #c6cdd8; font-size: 15px; }
+.steam-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 12px;
+  border: 1px solid rgba(6, 191, 255, 0.55);
+  border-radius: 999px;
+  background: rgba(6, 191, 255, 0.1);
+  color: #7fd7ff;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.steam-badge i {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #06bfff;
+  animation: steam-pulse 1.8s ease-out infinite;
+}
+@keyframes steam-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(6, 191, 255, 0.7); }
+  100% { box-shadow: 0 0 0 9px rgba(6, 191, 255, 0); }
+}
+.steam-points {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 8px;
+  list-style: none;
+  margin: 14px 0 22px;
+}
+.steam-points li {
+  padding: 1px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+  font-size: 13px;
+}
+.steam-store-link { display: block; margin-top: 12px; color: var(--muted); font-size: 14px; }
+.steam-store-link:hover { color: var(--text); }
+
+.steam-shots {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  padding: 0 32px 32px;
+}
+.steam-shot {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+.steam-shot img { display: block; width: 100%; height: auto; transition: transform 0.35s; }
+.steam-shot span {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 18px 10px 6px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+  color: var(--text);
+  font-size: 13px;
+}
+.steam-shot:hover { text-decoration: none; border-color: rgba(216, 169, 78, 0.6); }
+.steam-shot:hover img { transform: scale(1.06); }
+
+.steam-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 20px;
+  margin-top: 36px;
+  padding: 16px 20px;
+  border: 1px solid rgba(45, 115, 255, 0.5);
+  border-radius: 12px;
+  background: linear-gradient(90deg, rgba(6, 191, 255, 0.12), rgba(45, 115, 255, 0.05));
+}
+.steam-strip-capsule { flex: none; display: block; width: 184px; border-radius: 6px; overflow: hidden; border: 1px solid var(--border); }
+.steam-strip-capsule img { display: block; width: 100%; height: auto; }
+.steam-strip p { flex: 1 1 240px; color: #c6cdd8; font-size: 15px; }
+
+@media (max-width: 720px) {
+  .steam-cta-main { grid-template-columns: minmax(0, 1fr); gap: 20px; padding: 20px 16px 16px; }
+  .steam-cta-body h2 { font-size: 22px; }
+  .steam-shots { gap: 8px; padding: 0 16px 20px; }
+  .steam-shot span { display: none; }
+  .btn-steam { width: 100%; justify-content: center; font-size: 17px; padding: 13px 16px; }
+  .steam-strip-capsule { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn-steam::after, .steam-badge i { animation: none; }
+  .btn-steam, .nav-steam, .steam-capsule, .steam-shot img { transition: none; }
+}

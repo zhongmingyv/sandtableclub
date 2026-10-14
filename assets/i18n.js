@@ -52,6 +52,7 @@
     var links = [
       { href: 'index.html', key: 'home', active: page === 'home' },
       { href: 'games.html', key: 'games', active: page === 'games' },
+      { href: 'creators.html', key: 'creators', active: page === 'creators' },
       { href: 'terms.html', key: 'terms', active: page === 'terms' },
       { href: 'disclaimer.html', key: 'disclaimer', active: page === 'disclaimer' },
     ];
@@ -176,6 +177,40 @@
     });
   }
 
+  // 制作者乐园：15 大优势 + 招募 + QQ 群 + 宣传海报
+  function renderCreators() {
+    var k = T().creators;
+    var html =
+      '<div class="cr-head"><span class="cr-kicker">' + k.kicker + '</span>' +
+      '<h1>' + k.heading + '</h1><p>' + k.lead + '</p></div><div class="cr-grid">';
+    for (var i = 0; i < k.items.length; i++) {
+      var it = k.items[i];
+      var star = i === 10;
+      html += '<div class="cr-item' + (star ? ' star' : '') + '"><div class="cr-hex">' + (i + 1) + '</div><div>' +
+        '<h3>' + it.t + (it.o ? '<small>' + k.optional + '</small>' : '') + '</h3><p>' + it.d + '</p>';
+      if (star) {
+        html += '<div class="cr-agents">';
+        for (var a = 0; a < k.agents.length; a++) html += '<span>' + k.agents[a] + '</span>';
+        html += '</div>';
+      }
+      html += '</div></div>';
+    }
+    html += '</div><div class="cr-call"><h2>' + k.callTitle + '</h2><div class="cr-roles">';
+    for (var r = 0; r < k.roles.length; r++) html += '<span>' + k.roles[r] + '</span>';
+    html += '</div><p>' + k.callText + '</p><div class="cr-actions">' +
+      '<a class="btn-gold" href="#community">' + k.joinBtn + '</a>' +
+      steamLink('creators', 'btn-steam btn-steam-sm', STEAM_LOGO + '<span>' + T().steam.btn + '</span>') +
+      '</div></div>' + communityHtml() +
+      '<section class="cr-poster"><h2>' + k.posterTitle + '</h2><div class="cr-poster-row">' +
+      '<a href="assets/creators_poster.jpg" target="_blank" rel="noopener"><img src="assets/creators_poster.jpg" alt="' + k.posterAlt + '" loading="lazy" width="1080" height="2943"></a>' +
+      '<div><p>' + k.posterText + '</p><a class="btn-gold" href="assets/creators_poster.jpg" download="sandtableclub_poster.jpg">' + k.posterBtn + '</a></div>' +
+      '</div></section>';
+    var main = document.getElementById('main');
+    main.className = '';
+    main.innerHTML = html;
+    bindCopyGroup();
+  }
+
   function esc(s) {
     return String(s).replace(/[&<>"']/g, function (c) {
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
@@ -261,6 +296,7 @@
     renderChrome();
     if (page === 'home') renderHome();
     else if (page === 'games') renderGames();
+    else if (page === 'creators') renderCreators();
     else renderLegal(page);
     document.title = (page === 'home' ? T().home : T()[page]).title;
   }

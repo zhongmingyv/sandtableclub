@@ -106,7 +106,9 @@
 
   function renderGames() {
     var g = T().games;
-    var html = '<h1 class="page-title">' + g.heading + '</h1><p class="page-intro">' + g.intro + '</p>';
+    var mail = '<a href="mailto:mingyvzhong@outlook.com">mingyvzhong@outlook.com</a>';
+    var html = '<h1 class="page-title">' + g.heading + '</h1><p class="page-intro">' + g.intro + '</p>' +
+      '<div class="notice">' + g.notice.replace('{email}', mail) + '</div>';
     if (games === null) html += '<p class="muted">' + g.loading + '</p>';
     else if (games === 'error') html += '<p class="muted">' + g.error + '</p>';
     else if (games.length === 0) html += '<p class="muted">' + g.empty + '</p>';

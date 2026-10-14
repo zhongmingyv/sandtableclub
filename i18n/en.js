@@ -28,6 +28,7 @@ window.I18N.en = {
     title: 'Play Online - SandTable Club',
     heading: 'Play Online',
     intro: 'These games run right in your browser — nothing to install. The first launch downloads the game files; after that your browser keeps them and it starts much faster. Please use a recent desktop Chrome, Edge or Firefox.',
+    notice: '<strong>Important notice:</strong> The games below were made by users with SandTableClub. They are provided free of charge solely for learning game rules and learning to build games with SandTableClub, and may not be used for any other purpose; anyone who does so bears all consequences. If any of this content infringes your rights, please contact us: {email}',
     play: 'Play',
     author: 'by {a}',
     login: 'Login required',

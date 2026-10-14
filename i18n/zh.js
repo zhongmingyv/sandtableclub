@@ -28,6 +28,7 @@ window.I18N.zh = {
     title: '在线游戏 - 沙盘俱乐部',
     heading: '在线游戏',
     intro: '下面这些游戏点开就能在浏览器里玩，不用安装。第一次打开要先下载游戏文件，之后浏览器会记住、再开就快了。请用电脑上的新版 Chrome、Edge 或 Firefox。',
+    notice: '<strong>重要声明:</strong>以下游戏均由用户使用 SandTableClub 开发,仅免费供学习游戏规则和学习使用 SandTableClub 制作游戏之用,不得用于其他用途,否则后果自负。如果以下内容侵害了您的相关权益,请联系我们:{email}',
     play: '开始游戏',
     author: '作者 {a}',
     login: '需要登录',

@@ -28,6 +28,7 @@ window.I18N.cht = {
     title: '線上遊戲 - 沙盤俱樂部',
     heading: '線上遊戲',
     intro: '下面這些遊戲點開就能在瀏覽器裡玩，不用安裝。第一次開啟要先下載遊戲檔案，之後瀏覽器會記住、再開就快了。請使用電腦上的新版 Chrome、Edge 或 Firefox。',
+    notice: '<strong>重要聲明:</strong>以下遊戲均由使用者使用 SandTableClub 開發,僅免費供學習遊戲規則和學習使用 SandTableClub 製作遊戲之用,不得用於其他用途,否則後果自負。如果以下內容侵害了您的相關權益,請聯絡我們:{email}',
     play: '開始遊戲',
     author: '作者 {a}',
     login: '需要登入',

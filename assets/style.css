@@ -69,18 +69,6 @@ section h2 {
   margin-bottom: 16px;
 }
 
-.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
-.card {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 20px;
-}
-.card h3 { font-size: 18px; margin-bottom: 8px; }
-.card p { color: var(--muted); font-size: 15px; }
-.card.blue h3 { color: #7ea9dd; }
-.card.red h3 { color: #d98a7c; }
-.card.gold h3 { color: var(--gold); }
 
 .btn-gold {
   display: inline-block;
@@ -524,6 +512,8 @@ nav a.nav-steam:hover {
 .cr-call p { max-width: 620px; margin: 0 auto; color: #e9dcc0; }
 .cr-actions { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 12px; margin-top: 22px; }
 .cr-actions .btn-gold { padding: 9px 26px; }
+.cr-more { margin-top: 16px; text-align: right; }
+.cr-more a { color: var(--gold); }
 .cr-poster-row { display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start; }
 .cr-poster-row > a { flex: 0 1 300px; display: block; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
 .cr-poster-row img { display: block; width: 100%; height: auto; }

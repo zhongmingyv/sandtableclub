@@ -38,6 +38,7 @@ window.I18N.en = {
     kicker: 'A paradise for wargame makers',
     heading: '15 reasons to build your wargame with SandTable Club',
     lead: 'Making a tabletop or digital wargame? With SandTable Club you focus on the design — code, AI opponents, multiplayer, publishing and print layout are already taken care of.',
+    homeMore: 'See For Creators: we\'re recruiting admins and producers, plus a poster to download →',
     optional: 'Optional',
     items: [
       { t: 'No code required', d: 'Build a complete wargame without writing a single line of code.' },
@@ -76,11 +77,6 @@ window.I18N.en = {
       title: 'What is this software?',
       html: 'SandTable Club is a <strong>campaign simulator and tabletop-wargame-style strategy platform</strong>. It does not ship one fixed game — it hands the power of game-making to you: define unit attributes, stat formulas, map terrain, trigger rules and UI in the editor, build your own campaign like laying out a real sand table, then playtest it solo or battle other players online.',
     },
-    cards: [
-      { cls: 'blue', title: 'Solo · Creation Mode', text: 'Built-in property editor: templates, stat tables, formulas, triggers, maps and UI — all visually editable. Start from a blank sand table and build a complete, playable campaign ruleset.' },
-      { cls: 'gold', title: 'AI-Assisted Authoring', text: 'An LLM-powered maker assistant: describe the gameplay you want in natural language, and the AI generates templates, fills in stats and lays out maps, dramatically lowering the creation barrier.' },
-      { cls: 'red', title: 'Battle · Online Mode', text: 'Sign in to the battle platform, upload your campaign, create or join rooms to play against others, with replay and spectating — or let an AI take a seat and spar with you.' },
-    ],
   },
   games: {
     title: 'Play Online - SandTable Club',

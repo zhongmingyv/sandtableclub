@@ -96,13 +96,10 @@
       '<h1>' + h.heroTitle + '</h1>' +
       '<p class="tagline">' + h.tagline + '</p>' +
       '</div>' + steamCta() +
-      '<section id="about"><h2>' + h.about.title + '</h2><p>' + h.about.html + '</p>' +
-      '<div class="cards" style="margin-top: 20px;">';
-    for (var i = 0; i < h.cards.length; i++) {
-      var card = h.cards[i];
-      html += '<div class="card ' + card.cls + '"><h3>' + card.title + '</h3><p>' + card.text + '</p></div>';
-    }
-    html += '</div></section>' + communityHtml();
+      '<section id="about"><h2>' + h.about.title + '</h2><p>' + h.about.html + '</p></section>' +
+      '<section id="advantages"><h2>' + T().creators.heading + '</h2>' + advantagesGrid() +
+      '<p class="cr-more"><a href="' + withLang('creators.html') + '">' + T().creators.homeMore + '</a></p></section>' +
+      communityHtml();
     var main = document.getElementById('main');
     main.className = '';
     main.innerHTML = html;
@@ -177,12 +174,10 @@
     });
   }
 
-  // 制作者乐园：15 大优势 + 招募 + QQ 群 + 宣传海报
-  function renderCreators() {
+  // 15 大优势卡片，首页和制作者乐园共用
+  function advantagesGrid() {
     var k = T().creators;
-    var html =
-      '<div class="cr-head"><span class="cr-kicker">' + k.kicker + '</span>' +
-      '<h1>' + k.heading + '</h1><p>' + k.lead + '</p></div><div class="cr-grid">';
+    var html = '<div class="cr-grid">';
     for (var i = 0; i < k.items.length; i++) {
       var it = k.items[i];
       var star = i === 10;
@@ -195,7 +190,16 @@
       }
       html += '</div></div>';
     }
-    html += '</div><div class="cr-call"><h2>' + k.callTitle + '</h2><div class="cr-roles">';
+    return html + '</div>';
+  }
+
+  // 制作者乐园：15 大优势 + 招募 + QQ 群 + 宣传海报
+  function renderCreators() {
+    var k = T().creators;
+    var html =
+      '<div class="cr-head"><span class="cr-kicker">' + k.kicker + '</span>' +
+      '<h1>' + k.heading + '</h1><p>' + k.lead + '</p></div>' + advantagesGrid();
+    html += '<div class="cr-call"><h2>' + k.callTitle + '</h2><div class="cr-roles">';
     for (var r = 0; r < k.roles.length; r++) html += '<span>' + k.roles[r] + '</span>';
     html += '</div><p>' + k.callText + '</p><div class="cr-actions">' +
       '<a class="btn-gold" href="#community">' + k.joinBtn + '</a>' +

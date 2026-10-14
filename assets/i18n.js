@@ -36,14 +36,9 @@
   function renderChrome() {
     var c = T().common;
 
-    document.getElementById('crowdbar').innerHTML =
-      '<div class="crowdfund-bar"><strong>' + c.crowdBar.strong + '</strong>' + c.crowdBar.text +
-      '<a class="cta" href="' + withLang('index.html#crowdfunding') + '">' + c.crowdBar.cta + '</a></div>';
-
     var links = [
       { href: 'index.html', key: 'home', active: page === 'home' },
       { href: 'games.html', key: 'games', active: page === 'games' },
-      { href: 'index.html#crowdfunding', key: 'crowd', active: false },
       { href: 'terms.html', key: 'terms', active: page === 'terms' },
       { href: 'disclaimer.html', key: 'disclaimer', active: page === 'disclaimer' },
     ];
@@ -71,8 +66,7 @@
 
     document.getElementById('footer').innerHTML =
       '<div><a href="' + withLang('terms.html') + '">' + c.nav.terms + '</a> · ' +
-      '<a href="' + withLang('disclaimer.html') + '">' + c.nav.disclaimer + '</a> · ' +
-      '<a href="' + withLang('index.html#crowdfunding') + '">' + c.nav.crowd + '</a></div>' +
+      '<a href="' + withLang('disclaimer.html') + '">' + c.nav.disclaimer + '</a></div>' +
       '<div style="margin-top: 8px;">' + c.contactLabel + ': ' +
       '<a href="mailto:mingyvzhong@outlook.com">mingyvzhong@outlook.com</a></div>' +
       '<div style="margin-top: 8px;">' + c.footerCopy + '</div>';
@@ -92,14 +86,7 @@
       var card = h.cards[i];
       html += '<div class="card ' + card.cls + '"><h3>' + card.title + '</h3><p>' + card.text + '</p></div>';
     }
-    html += '</div></section>' +
-      '<section id="crowdfunding"><h2>' + h.crowd.secTitle + '</h2><div class="panel">' +
-      '<h3>' + h.crowd.panelTitle + '</h3><p>' + h.crowd.p1 + '</p><ul>';
-    for (var j = 0; j < h.crowd.items.length; j++) html += '<li>' + h.crowd.items[j] + '</li>';
-    html += '</ul><p style="margin-bottom: 20px;">' + h.crowd.p2 + '</p>' +
-      '<a class="btn-gold" href="#" title="' + h.crowd.btnTitle + '">' + h.crowd.btn + '</a>' +
-      '<p style="margin-top: 12px; font-size: 13px; color: var(--muted);">' + h.crowd.note + '</p>' +
-      '</div></section>';
+    html += '</div></section>';
     var main = document.getElementById('main');
     main.className = '';
     main.innerHTML = html;

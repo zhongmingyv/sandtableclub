@@ -4,12 +4,7 @@ window.I18N.en = {
   langName: 'English',
   common: {
     brand: 'SandTable Club',
-    nav: { home: 'Home', games: 'Play Online', crowd: 'Crowdfunding', terms: 'Terms of Service', disclaimer: 'Disclaimer' },
-    crowdBar: {
-      strong: 'Crowdfunding live',
-      text: ' — support the ongoing development of SandTable Club and unlock multiplayer servers and more creation tools',
-      cta: 'Learn more →',
-    },
+    nav: { home: 'Home', games: 'Play Online', terms: 'Terms of Service', disclaimer: 'Disclaimer' },
     contactLabel: 'Contact us',
     footerCopy: '© 2026 SandTable Club sandtable.club — Creators are solely responsible for their user-generated content.',
   },
@@ -28,21 +23,6 @@ window.I18N.en = {
       { cls: 'gold', title: 'AI-Assisted Authoring', text: 'An LLM-powered maker assistant: describe the gameplay you want in natural language, and the AI generates templates, fills in stats and lays out maps, dramatically lowering the creation barrier.' },
       { cls: 'red', title: 'Battle · Online Mode', text: 'Sign in to the battle platform, upload your campaign, create or join rooms to play against others, with replay and spectating — or let an AI take a seat and spar with you.' },
     ],
-    crowd: {
-      secTitle: 'Crowdfunding',
-      panelTitle: 'Why crowdfund?',
-      p1: 'SandTable Club is built by an independent developer. Multiplayer servers, LLM usage for the AI maker assistant, and continued tooling work all require sustained investment. All proceeds will go to:',
-      items: [
-        'Deploying and operating the battle servers long-term;',
-        'Model integration and optimization for AI-assisted authoring;',
-        'Feature iteration and bug fixes for the editor and battle platform;',
-        'Building the creator community and content-sharing features.',
-      ],
-      p2: 'Backers receive tier rewards (early access, exclusive badges, creator support, etc. — as published on the crowdfunding page).',
-      btn: 'Support us on the crowdfunding page',
-      btnTitle: 'Crowdfunding page coming soon',
-      note: 'The crowdfunding entry opens soon — watch this page for updates.',
-    },
   },
   games: {
     title: 'Play Online - SandTable Club',
@@ -59,7 +39,7 @@ window.I18N.en = {
   terms: {
     title: 'Terms of Service - SandTable Club',
     docTitle: 'Terms of Service',
-    updated: 'Last updated: July 10, 2026',
+    updated: 'Last updated: October 14, 2026',
     intro: 'Welcome to SandTable Club (the "Software" or the "Platform"). Please read these Terms carefully before registering, downloading, installing or using the Software. By using the Software you are deemed to have read, understood and agreed to these Terms and the <a href="disclaimer.html">Disclaimer</a> in full.',
     sections: [
       { title: '1. Services', blocks: [
@@ -67,8 +47,7 @@ window.I18N.en = {
         { t: 'ol', items: [
           'Campaign editor: for creating and editing user-made content such as game templates, stats, formulas, maps, trigger rules and UI;',
           'AI-assisted authoring: creation assistance via third-party large language model services;',
-          'Online battles: uploading works, creating/joining matches, replays and spectating;',
-          'Other services agreed in crowdfunding rewards.',
+          'Online battles: uploading works, creating/joining matches, replays and spectating.',
         ] },
       ] },
       { title: '2. Accounts and Conduct', blocks: [
@@ -97,24 +76,17 @@ window.I18N.en = {
           'Ownership of and responsibility for User Content are governed by Section 3 and the Disclaimer.',
         ] },
       ] },
-      { title: '5. Crowdfunding', blocks: [
-        { t: 'ol', items: [
-          'Crowdfunding is a sponsorship of development work, not a pre-sale contract; rewards are as published on the crowdfunding page;',
-          'The developer will make reasonable efforts to deliver rewards on schedule; delays caused by force majeure or reasonable development changes will be announced promptly;',
-          'Use of crowdfunding proceeds is as published on the crowdfunding page.',
-        ] },
-      ] },
-      { title: '6. Changes, Suspension and Termination of Service', blocks: [
+      { title: '5. Changes, Suspension and Termination of Service', blocks: [
         { t: 'ol', items: [
           'The Platform may change, suspend or terminate some or all services based on operational circumstances, with advance notice where possible;',
           'The Platform bears no liability for changes to, interruption or termination of free services;',
           'If a user breaches these Terms, the Platform may suspend or terminate service to that user.',
         ] },
       ] },
-      { title: '7. Amendments', blocks: [
+      { title: '6. Amendments', blocks: [
         { t: 'p', h: 'The Platform may amend these Terms from time to time; amended Terms will be published on this page. Continued use of the Software after amendment constitutes acceptance of the amended Terms.' },
       ] },
-      { title: '8. Governing Law and Disputes', blocks: [
+      { title: '7. Governing Law and Disputes', blocks: [
         { t: 'p', h: 'Disputes arising from these Terms shall first be resolved through friendly negotiation; failing that, either party may bring an action before the competent court at the developer\'s place of residence, and the laws of the developer\'s place of residence shall apply.' },
       ] },
     ],

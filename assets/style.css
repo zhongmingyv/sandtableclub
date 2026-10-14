@@ -24,25 +24,6 @@ body {
 a { color: var(--blue-hi); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
-/* 顶部众筹条 */
-.crowdfund-bar {
-  background: linear-gradient(90deg, #3d2c10, #57400f);
-  border-bottom: 1px solid var(--gold);
-  padding: 10px 16px;
-  text-align: center;
-  font-size: 15px;
-}
-.crowdfund-bar strong { color: var(--gold); }
-.crowdfund-bar .cta {
-  display: inline-block;
-  margin-left: 12px;
-  padding: 2px 14px;
-  border: 1px solid var(--gold);
-  border-radius: 14px;
-  color: var(--gold);
-}
-.crowdfund-bar .cta:hover { background: rgba(216, 169, 78, 0.15); text-decoration: none; }
-
 /* 导航 */
 nav {
   display: flex;
@@ -101,15 +82,6 @@ section h2 {
 .card.red h3 { color: #d98a7c; }
 .card.gold h3 { color: var(--gold); }
 
-/* 众筹区块 */
-#crowdfunding .panel {
-  background: linear-gradient(135deg, #241b0a, #2e2410);
-  border: 1px solid var(--gold);
-  border-radius: 12px;
-  padding: 28px;
-}
-#crowdfunding .panel h3 { color: var(--gold); font-size: 20px; margin-bottom: 12px; }
-#crowdfunding ul { margin: 12px 0 20px 24px; color: var(--muted); }
 .btn-gold {
   display: inline-block;
   background: var(--gold);

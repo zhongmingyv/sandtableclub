@@ -5,7 +5,6 @@ window.I18N.en = {
   common: {
     brand: 'SandTable Club',
     nav: { home: 'Home', games: 'Play Online', creators: 'For Creators', terms: 'Terms of Service', disclaimer: 'Disclaimer' },
-    qqLabel: 'QQ group',
     contactLabel: 'Contact us',
     footerCopy: '© 2026 SandTable Club sandtable.club — Creators are solely responsible for their user-generated content.',
   },
@@ -25,13 +24,10 @@ window.I18N.en = {
   },
   community: {
     title: 'Join the player community',
-    lead: 'Talk rules, show off your campaigns and find opponents with fellow wargamers. New releases, playtest invites and dev updates land in the group first — and the developer is there in person, so bring your ideas and bug reports.',
+    lead: 'Talk rules, show off your campaigns and find opponents with fellow wargamers. New releases, playtest invites and dev updates land on our Discord first — and the developer is there in person, so bring your ideas and bug reports.',
     points: ['Discuss gameplay & rule design', 'Share your campaigns & maps', 'Find online opponents', 'Early playtest access'],
-    groupLabel: 'QQ group number',
-    copy: 'Copy number',
-    copied: 'Copied ✓',
-    scanTip: 'Scan with the QQ mobile app, or search the group number in QQ',
-    qrAlt: 'SandTable Club QQ group QR code',
+    btn: 'Join our Discord',
+    tip: 'Opens the invite in your browser or the Discord app.',
   },
   creators: {
     title: 'For Creators - SandTable Club',
@@ -61,7 +57,7 @@ window.I18N.en = {
     callTitle: 'Build a home for creators with us',
     roles: ['Admins wanted', 'Producers wanted'],
     callText: 'We need more creators to join us as admins and producers. Come build with us and let\'s grow the market together!',
-    joinBtn: 'Join the QQ group',
+    joinBtn: 'Join our Discord',
     posterTitle: 'Poster',
     posterText: 'A Chinese-language poster — feel free to share it in your groups.',
     posterBtn: 'Download poster',

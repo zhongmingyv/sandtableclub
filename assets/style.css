@@ -335,7 +335,7 @@ nav a.nav-steam:hover {
 }
 @media (prefers-reduced-motion: reduce) {
   .btn-steam::after, .steam-badge i { animation: none; }
-  .btn-steam, .nav-steam, .steam-capsule, .steam-shot img { transition: none; }
+  .btn-steam, .nav-steam, .steam-capsule, .steam-shot img, .community-discord { transition: none; }
 }
 
 /* QQ 群 */
@@ -414,9 +414,38 @@ nav a.nav-steam:hover {
 .community-tip { margin-top: 10px; color: var(--muted); font-size: 13px; }
 .footer-sep { margin-right: 10px; }
 
+/* Discord（非中文版） */
+.community-discord {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  border-radius: 14px;
+  background: #5865f2;
+  color: #fff;
+  box-shadow: 0 16px 40px -14px rgba(88, 101, 242, 0.75);
+  transition: transform 0.15s;
+}
+.community-discord:hover { transform: translateY(-2px); }
+.community-discord .discord-logo { width: 55%; height: auto; }
+.btn-discord {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 22px;
+  border-radius: 10px;
+  background: #5865f2;
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+.btn-discord:hover { background: #4752c4; color: #fff; text-decoration: none; }
+.btn-discord .discord-logo { width: 22px; height: 22px; }
+
 @media (max-width: 720px) {
   .community-panel { grid-template-columns: minmax(0, 1fr); padding: 20px 16px; gap: 20px; }
-  .community-qr { width: 220px; max-width: 100%; margin: 0 auto; }
+  .community-qr, .community-discord { width: 220px; max-width: 100%; margin: 0 auto; }
 }
 
 /* 制作者乐园 */

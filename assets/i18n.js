@@ -18,7 +18,7 @@
     return 'en';
   }
 
-  // 官方服务器：在线游戏的列表与游戏本身都在它上面（/web-games、/play/{游戏编号}/）
+  // 官方服务器：在线游戏的列表与游戏本身（/web-games、/play/{游戏编号}/）、插件市场的列表（/plugins）都在它上面
   var API = 'https://api.sandtable.club';
 
   // Steam 商店页；utm_campaign 区分入口，Steamworks 的 UTM 统计里能看到各入口带来的访问
@@ -57,6 +57,7 @@
     var links = [
       { href: 'index.html', key: 'home', active: page === 'home' },
       { href: 'games.html', key: 'games', active: page === 'games' },
+      { href: 'plugins.html', key: 'plugins', active: page === 'plugins' },
       { href: 'creators.html', key: 'creators', active: page === 'creators' },
       { href: 'terms.html', key: 'terms', active: page === 'terms' },
       { href: 'disclaimer.html', key: 'disclaimer', active: page === 'disclaimer' },
@@ -280,6 +281,52 @@
       .then(renderGames);
   }
 
+  // 插件市场：列表来自服务器，后台发版并点「生效」、改说明后这里自动更新。只取一次，切语言时用同一份重画
+  var plugins = null; // null = 还在取；'error' = 取不到；否则是列表
+  var pluginsRequested = false;
+
+  function fmtSize(bytes) {
+    return bytes >= 1048576 ? (bytes / 1048576).toFixed(1) + ' MB' : Math.max(1, Math.round(bytes / 1024)) + ' KB';
+  }
+
+  function renderPlugins() {
+    var p = T().plugins;
+    var html = '<h1 class="page-title">' + p.heading + '</h1><p class="page-intro">' + p.intro + '</p>' +
+      '<div class="notice">' + p.notice + '</div>';
+    if (plugins === null) html += '<p class="muted">' + p.loading + '</p>';
+    else if (plugins === 'error') html += '<p class="muted">' + p.error + '</p>';
+    else if (plugins.length === 0) html += '<p class="muted">' + p.empty + '</p>';
+    else {
+      html += '<div class="games">';
+      for (var i = 0; i < plugins.length; i++) {
+        var x = plugins[i];
+        var meta = [
+          p.version.replace('{v}', esc(x.version)),
+          fmtSize(x.size),
+          p.updated.replace('{d}', new Date(x.updatedAt).toLocaleDateString(HTML_LANG[cur])),
+          p.downloads.replace('{n}', esc(x.downloads)),
+        ];
+        html += '<div class="game"><div class="game-body"><h3>' + esc(x.name) + '</h3>' +
+          '<p class="muted">' + meta.join(' · ') + '</p>' +
+          (x.description ? '<p class="plugin-desc">' + esc(x.description) + '</p>' : '') +
+          (x.notes ? '<p class="plugin-desc muted">' + p.notes + esc(x.notes) + '</p>' : '') +
+          '<a class="btn-gold" href="' + esc(API + x.downloadPath) + '">' + p.download + '</a></div></div>';
+      }
+      html += '</div>';
+    }
+    var main = document.getElementById('main');
+    main.className = '';
+    main.innerHTML = html;
+
+    if (pluginsRequested) return;
+    pluginsRequested = true;
+    fetch(API + '/plugins')
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function (d) { plugins = d.items || []; })
+      .catch(function () { plugins = 'error'; })
+      .then(renderPlugins);
+  }
+
   function blockHtml(b) {
     if (b.t === 'p') return '<p>' + b.h + '</p>';
     if (b.t === 'ol' || b.t === 'ul') {
@@ -313,6 +360,7 @@
     renderChrome();
     if (page === 'home') renderHome();
     else if (page === 'games') renderGames();
+    else if (page === 'plugins') renderPlugins();
     else if (page === 'creators') renderCreators();
     else renderLegal(page);
     document.title = (page === 'home' ? T().home : T()[page]).title;

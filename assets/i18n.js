@@ -235,6 +235,35 @@
     });
   }
 
+  // 点封面看完整大图：点任意处或按 Esc 关闭。进游戏只走「开始游戏」按钮
+  function showImage(src, alt) {
+    var box = document.createElement('div');
+    box.className = 'lightbox';
+    var img = document.createElement('img');
+    img.src = src;
+    img.alt = alt;
+    box.appendChild(img);
+    function close() {
+      box.remove();
+      document.removeEventListener('keydown', onKey);
+    }
+    function onKey(e) {
+      if (e.key === 'Escape') close();
+    }
+    box.addEventListener('click', close);
+    document.addEventListener('keydown', onKey);
+    document.body.appendChild(box);
+  }
+
+  function bindCovers() {
+    var covers = document.querySelectorAll('.game-cover[data-full]');
+    for (var i = 0; i < covers.length; i++) {
+      covers[i].addEventListener('click', function () {
+        showImage(this.getAttribute('data-full'), this.getAttribute('aria-label'));
+      });
+    }
+  }
+
   // 在线游戏：列表只取一次，切语言时用同一份重画
   var games = null; // null = 还在取；'error' = 取不到；否则是列表
   var gamesRequested = false;
@@ -258,10 +287,11 @@
         meta.push(g.updated.replace('{d}', new Date(x.updatedAt).toLocaleDateString(HTML_LANG[cur])));
         // 后台没传封面时用标题的第一个字占位，一行的版式不塌
         var cover = x.coverUrl
-          ? '<img src="' + esc(x.coverUrl) + '" alt="' + esc(x.title) + '" loading="lazy" width="256" height="144">'
-          : '<span class="game-cover-empty" aria-hidden="true">' + esc(Array.from(x.title)[0] || '') + '</span>';
+          ? '<button type="button" class="game-cover" data-full="' + esc(x.coverUrl) + '" aria-label="' + esc(x.title) + '">' +
+            '<img src="' + esc(x.coverUrl) + '" alt="' + esc(x.title) + '" loading="lazy" width="256" height="144"></button>'
+          : '<div class="game-cover"><span class="game-cover-empty" aria-hidden="true">' + esc(Array.from(x.title)[0] || '') + '</span></div>';
         var open = !!pluginsOpen[x.campaignId];
-        html += '<article class="game-row" data-id="' + esc(x.campaignId) + '"><a class="game-cover" href="' + esc(url) + '" target="_blank" rel="noopener" tabindex="-1">' + cover + '</a>' +
+        html += '<article class="game-row" data-id="' + esc(x.campaignId) + '">' + cover +
           '<div class="game-body"><h3>' + esc(x.title) + '</h3>' +
           '<p class="muted">' + meta.join(' · ') + (x.loginRequired ? ' · <span class="tag">' + g.login + '</span>' : '') + '</p>' +
           (x.intro ? '<div class="plugin-text' + (open ? '" style="max-height: none"' : ' clamp"') + '>' + esc(x.intro) + '</div>' +
@@ -281,6 +311,7 @@
     main.className = '';
     main.innerHTML = html;
     bindPlugins();
+    bindCovers();
 
     if (gamesRequested) return;
     gamesRequested = true;

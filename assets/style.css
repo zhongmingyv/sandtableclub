@@ -133,7 +133,47 @@ footer a { color: var(--muted); margin: 0 10px; }
 .game h3 { font-size: 18px; margin-bottom: 2px; overflow-wrap: anywhere; }
 .game .muted { margin-bottom: 12px; }
 .game .btn-gold { padding: 6px 24px; }
-.plugin-desc { font-size: 14px; margin-bottom: 12px; white-space: pre-line; overflow-wrap: anywhere; }
+.plugin-list { display: flex; flex-direction: column; gap: 12px; }
+.plugin-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 20px;
+}
+.plugin-main { flex: 1; min-width: 0; }
+.plugin-row h3 { font-size: 18px; margin-bottom: 2px; overflow-wrap: anywhere; }
+/* 默认两行：行高 1.6，所以 3.2em */
+.plugin-text {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-top: 8px;
+  max-height: 3.2em;
+  overflow: hidden;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+  transition: max-height 0.25s ease;
+}
+.plugin-text.clamp { white-space: normal; }
+.plugin-more {
+  background: none;
+  border: 0;
+  color: var(--gold);
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  margin-top: 4px;
+  padding: 2px 0;
+}
+.plugin-more:hover { text-decoration: underline; }
+.plugin-more[hidden] { display: none; }
+.plugin-get { flex: none; padding: 6px 24px; }
+@media (max-width: 640px) {
+  .plugin-row { flex-direction: column; align-items: stretch; gap: 12px; }
+  .plugin-get { text-align: center; }
+}
 
 /* Steam 愿望单入口 */
 .steam-logo { width: 1.25em; height: 1.25em; flex: none; }

@@ -284,6 +284,56 @@
   // 插件市场：列表来自服务器，后台发版并点「生效」、改说明后这里自动更新。只取一次，切语言时用同一份重画
   var plugins = null; // null = 还在取；'error' = 取不到；否则是列表
   var pluginsRequested = false;
+  var pluginsOpen = {}; // 展开了的插件编号：切语言重画时保持展开
+
+  // 说明默认只露两行，折叠时换行并成空格（否则第一段后的空行就占掉了第二行）。
+  // 放得下、又没有被并掉的换行，就不出「更多」按钮。窗口变窄时重新算
+  function measurePlugins() {
+    var rows = document.querySelectorAll('.plugin-row');
+    for (var i = 0; i < rows.length; i++) {
+      var text = rows[i].querySelector('.plugin-text');
+      var more = rows[i].querySelector('.plugin-more');
+      if (!text || !more || pluginsOpen[rows[i].getAttribute('data-id')]) continue;
+      more.hidden = text.scrollHeight <= text.clientHeight + 1 && text.textContent.indexOf('\n') < 0;
+    }
+  }
+
+  function togglePlugin(row) {
+    var id = row.getAttribute('data-id');
+    var text = row.querySelector('.plugin-text');
+    var more = row.querySelector('.plugin-more');
+    var open = !pluginsOpen[id];
+    pluginsOpen[id] = open;
+    more.textContent = open ? T().plugins.less : T().plugins.more;
+    more.setAttribute('aria-expanded', open ? 'true' : 'false');
+    // max-height 从 none 到具体高度才有动画，所以两个方向都先落到实际高度
+    if (open) {
+      text.classList.remove('clamp');
+      text.style.maxHeight = text.scrollHeight + 'px';
+    } else {
+      text.style.maxHeight = text.scrollHeight + 'px';
+      void text.offsetHeight;
+      text.style.maxHeight = '';
+      text.classList.add('clamp');
+    }
+  }
+
+  function bindPlugins() {
+    measurePlugins();
+    var buttons = document.querySelectorAll('.plugin-more');
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].addEventListener('click', function () {
+        togglePlugin(this.parentNode.parentNode);
+      });
+    }
+    var texts = document.querySelectorAll('.plugin-text');
+    for (var j = 0; j < texts.length; j++) {
+      texts[j].addEventListener('transitionend', function () {
+        // 展开完放开高度，窗口变窄、文字变多行时不被截断
+        if (pluginsOpen[this.parentNode.parentNode.getAttribute('data-id')]) this.style.maxHeight = 'none';
+      });
+    }
+  }
 
   function fmtSize(bytes) {
     return bytes >= 1048576 ? (bytes / 1048576).toFixed(1) + ' MB' : Math.max(1, Math.round(bytes / 1024)) + ' KB';
@@ -297,29 +347,34 @@
     else if (plugins === 'error') html += '<p class="muted">' + p.error + '</p>';
     else if (plugins.length === 0) html += '<p class="muted">' + p.empty + '</p>';
     else {
-      html += '<div class="games">';
+      html += '<div class="plugin-list">';
       for (var i = 0; i < plugins.length; i++) {
         var x = plugins[i];
+        var open = !!pluginsOpen[x.id];
         var meta = [
           p.version.replace('{v}', esc(x.version)),
           fmtSize(x.size),
           p.updated.replace('{d}', new Date(x.updatedAt).toLocaleDateString(HTML_LANG[cur])),
           p.downloads.replace('{n}', esc(x.downloads)),
         ];
-        html += '<div class="game"><div class="game-body"><h3>' + esc(x.name) + '</h3>' +
+        var text = (x.description ? '<div>' + esc(x.description) + '</div>' : '') +
+          (x.notes ? '<div class="muted">' + p.notes + esc(x.notes) + '</div>' : '');
+        html += '<article class="plugin-row" data-id="' + esc(x.id) + '"><div class="plugin-main"><h3>' + esc(x.name) + '</h3>' +
           '<p class="muted">' + meta.join(' · ') + '</p>' +
-          (x.description ? '<p class="plugin-desc">' + esc(x.description) + '</p>' : '') +
-          (x.notes ? '<p class="plugin-desc muted">' + p.notes + esc(x.notes) + '</p>' : '') +
-          '<a class="btn-gold" href="' + esc(API + x.downloadPath) + '">' + p.download + '</a></div></div>';
+          (text ? '<div class="plugin-text' + (open ? '" style="max-height: none"' : ' clamp"') + '>' + text + '</div>' +
+            '<button type="button" class="plugin-more" aria-expanded="' + open + '">' + (open ? p.less : p.more) + '</button>' : '') +
+          '</div><a class="btn-gold plugin-get" href="' + esc(API + x.downloadPath) + '">' + p.download + '</a></article>';
       }
       html += '</div>';
     }
     var main = document.getElementById('main');
     main.className = '';
     main.innerHTML = html;
+    bindPlugins();
 
     if (pluginsRequested) return;
     pluginsRequested = true;
+    window.addEventListener('resize', measurePlugins);
     fetch(API + '/plugins')
       .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
       .then(function (d) { plugins = d.items || []; })

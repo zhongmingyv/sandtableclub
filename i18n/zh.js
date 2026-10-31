@@ -97,6 +97,8 @@ window.I18N.zh = {
     intro: '插件给 Maker 增加新功能。下载 zip 后，在 Maker 里打开「文件 → 设置 → 插件 → 管理插件」，选「从 zip 导入」，启用后重启 Maker。',
     notice: '<strong>安全提示：</strong>插件能在你的电脑上运行任意程序，只安装你信得过的插件。',
     download: '下载',
+    more: '更多',
+    less: '收起',
     version: '版本 {v}',
     updated: '更新于 {d}',
     downloads: '下载 {n} 次',

@@ -97,6 +97,8 @@ window.I18N.cht = {
     intro: '外掛為 Maker 增加新功能。下載 zip 後，在 Maker 裡開啟「檔案 → 設定 → 外掛 → 管理外掛」，選「從 zip 匯入」，啟用後重新啟動 Maker。',
     notice: '<strong>安全提示：</strong>外掛能在你的電腦上執行任意程式，只安裝你信得過的外掛。',
     download: '下載',
+    more: '更多',
+    less: '收起',
     version: '版本 {v}',
     updated: '更新於 {d}',
     downloads: '下載 {n} 次',

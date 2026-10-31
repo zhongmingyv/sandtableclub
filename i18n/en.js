@@ -93,6 +93,8 @@ window.I18N.en = {
     intro: 'Plugins add new features to Maker. Download the zip, then in Maker open File → Settings → Plugins → Manage Plugins, choose Import from zip, enable the plugin and restart Maker.',
     notice: '<strong>Safety notice:</strong> Plugins can run any program on your computer. Only install plugins you trust.',
     download: 'Download',
+    more: 'More',
+    less: 'Less',
     version: 'Version {v}',
     updated: 'Updated {d}',
     downloads: '{n} downloads',

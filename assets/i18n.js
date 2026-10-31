@@ -248,7 +248,7 @@
     else if (games === 'error') html += '<p class="muted">' + g.error + '</p>';
     else if (games.length === 0) html += '<p class="muted">' + g.empty + '</p>';
     else {
-      html += '<div class="games">';
+      html += '<div class="game-list">';
       for (var i = 0; i < games.length; i++) {
         var x = games[i];
         var url = API + x.playPath;
@@ -256,9 +256,18 @@
         if (x.era) meta.push(esc(x.era));
         meta.push(g.author.replace('{a}', esc(x.ownerName)));
         meta.push(g.updated.replace('{d}', new Date(x.updatedAt).toLocaleDateString(HTML_LANG[cur])));
-        html += '<div class="game"><div class="game-body"><h3>' + esc(x.title) + '</h3>' +
+        // 后台没传封面时用标题的第一个字占位，一行的版式不塌
+        var cover = x.coverUrl
+          ? '<img src="' + esc(x.coverUrl) + '" alt="' + esc(x.title) + '" loading="lazy" width="256" height="144">'
+          : '<span class="game-cover-empty" aria-hidden="true">' + esc(Array.from(x.title)[0] || '') + '</span>';
+        var open = !!pluginsOpen[x.campaignId];
+        html += '<article class="game-row" data-id="' + esc(x.campaignId) + '"><a class="game-cover" href="' + esc(url) + '" target="_blank" rel="noopener" tabindex="-1">' + cover + '</a>' +
+          '<div class="game-body"><h3>' + esc(x.title) + '</h3>' +
           '<p class="muted">' + meta.join(' · ') + (x.loginRequired ? ' · <span class="tag">' + g.login + '</span>' : '') + '</p>' +
-          '<a class="btn-gold" href="' + esc(url) + '" target="_blank" rel="noopener">' + g.play + '</a></div></div>';
+          (x.intro ? '<div class="plugin-text' + (open ? '" style="max-height: none"' : ' clamp"') + '>' + esc(x.intro) + '</div>' +
+            '<button type="button" class="plugin-more" aria-expanded="' + open + '">' + (open ? T().plugins.less : T().plugins.more) + '</button>' : '') +
+          '</div>' +
+          '<a class="btn-gold game-play" href="' + esc(url) + '" target="_blank" rel="noopener">' + g.play + '</a></article>';
       }
       html += '</div>';
     }
@@ -271,6 +280,7 @@
     var main = document.getElementById('main');
     main.className = '';
     main.innerHTML = html;
+    bindPlugins();
 
     if (gamesRequested) return;
     gamesRequested = true;
@@ -281,6 +291,7 @@
       .then(renderGames);
   }
 
+  // 折叠说明（下面这组函数）：插件市场与在线游戏共用，一行带 data-id、里面有 .plugin-text 与 .plugin-more
   // 插件市场：列表来自服务器，后台发版并点「生效」、改说明后这里自动更新。只取一次，切语言时用同一份重画
   var plugins = null; // null = 还在取；'error' = 取不到；否则是列表
   var pluginsRequested = false;
@@ -289,7 +300,7 @@
   // 说明默认只露两行，折叠时换行并成空格（否则第一段后的空行就占掉了第二行）。
   // 放得下、又没有被并掉的换行，就不出「更多」按钮。窗口变窄时重新算
   function measurePlugins() {
-    var rows = document.querySelectorAll('.plugin-row');
+    var rows = document.querySelectorAll('[data-id]');
     for (var i = 0; i < rows.length; i++) {
       var text = rows[i].querySelector('.plugin-text');
       var more = rows[i].querySelector('.plugin-more');
@@ -318,8 +329,14 @@
     }
   }
 
+  var resizeBound = false;
+
   function bindPlugins() {
     measurePlugins();
+    if (!resizeBound) {
+      resizeBound = true;
+      window.addEventListener('resize', measurePlugins);
+    }
     var buttons = document.querySelectorAll('.plugin-more');
     for (var i = 0; i < buttons.length; i++) {
       buttons[i].addEventListener('click', function () {
@@ -374,7 +391,6 @@
 
     if (pluginsRequested) return;
     pluginsRequested = true;
-    window.addEventListener('resize', measurePlugins);
     fetch(API + '/plugins')
       .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
       .then(function (d) { plugins = d.items || []; })

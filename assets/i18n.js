@@ -235,6 +235,14 @@
     });
   }
 
+  // 后台填的文字按当前语言取：没填的语言退回简体。fallbackName / fallbackText 是简体（战役原标题、简体介绍）
+  function localized(x, fallbackName, fallbackText) {
+    var t = x.translations || {};
+    var c = t[cur] || {};
+    var zh = t.zh || {};
+    return { name: c.name || zh.name || fallbackName, text: c.text || fallbackText || '' };
+  }
+
   // 点封面看完整大图：点任意处或按 Esc 关闭。进游戏只走「开始游戏」按钮
   function showImage(src, alt) {
     var box = document.createElement('div');
@@ -281,20 +289,21 @@
       for (var i = 0; i < games.length; i++) {
         var x = games[i];
         var url = API + x.playPath;
+        var shown = localized(x, x.title, x.intro);
         var meta = [];
         if (x.era) meta.push(esc(x.era));
         meta.push(g.author.replace('{a}', esc(x.ownerName)));
         meta.push(g.updated.replace('{d}', new Date(x.updatedAt).toLocaleDateString(HTML_LANG[cur])));
         // 后台没传封面时用标题的第一个字占位，一行的版式不塌
         var cover = x.coverUrl
-          ? '<button type="button" class="game-cover" data-full="' + esc(x.coverUrl) + '" aria-label="' + esc(x.title) + '">' +
-            '<img src="' + esc(x.coverUrl) + '" alt="' + esc(x.title) + '" loading="lazy" width="256" height="144"></button>'
-          : '<div class="game-cover"><span class="game-cover-empty" aria-hidden="true">' + esc(Array.from(x.title)[0] || '') + '</span></div>';
+          ? '<button type="button" class="game-cover" data-full="' + esc(x.coverUrl) + '" aria-label="' + esc(shown.name) + '">' +
+            '<img src="' + esc(x.coverUrl) + '" alt="' + esc(shown.name) + '" loading="lazy" width="256" height="144"></button>'
+          : '<div class="game-cover"><span class="game-cover-empty" aria-hidden="true">' + esc(Array.from(shown.name)[0] || '') + '</span></div>';
         var open = !!pluginsOpen[x.campaignId];
         html += '<article class="game-row" data-id="' + esc(x.campaignId) + '">' + cover +
-          '<div class="game-body"><h3>' + esc(x.title) + '</h3>' +
+          '<div class="game-body"><h3>' + esc(shown.name) + '</h3>' +
           '<p class="muted">' + meta.join(' · ') + (x.loginRequired ? ' · <span class="tag">' + g.login + '</span>' : '') + '</p>' +
-          (x.intro ? '<div class="plugin-text' + (open ? '" style="max-height: none"' : ' clamp"') + '>' + esc(x.intro) + '</div>' +
+          (shown.text ? '<div class="plugin-text' + (open ? '" style="max-height: none"' : ' clamp"') + '>' + esc(shown.text) + '</div>' +
             '<button type="button" class="plugin-more" aria-expanded="' + open + '">' + (open ? T().plugins.less : T().plugins.more) + '</button>' : '') +
           '</div>' +
           '<a class="btn-gold game-play" href="' + esc(url) + '" target="_blank" rel="noopener">' + g.play + '</a></article>';
@@ -405,9 +414,10 @@
           p.updated.replace('{d}', new Date(x.updatedAt).toLocaleDateString(HTML_LANG[cur])),
           p.downloads.replace('{n}', esc(x.downloads)),
         ];
-        var text = (x.description ? '<div>' + esc(x.description) + '</div>' : '') +
+        var shown = localized(x, x.name, x.description);
+        var text = (shown.text ? '<div>' + esc(shown.text) + '</div>' : '') +
           (x.notes ? '<div class="muted">' + p.notes + esc(x.notes) + '</div>' : '');
-        html += '<article class="plugin-row" data-id="' + esc(x.id) + '"><div class="plugin-main"><h3>' + esc(x.name) + '</h3>' +
+        html += '<article class="plugin-row" data-id="' + esc(x.id) + '"><div class="plugin-main"><h3>' + esc(shown.name) + '</h3>' +
           '<p class="muted">' + meta.join(' · ') + '</p>' +
           (text ? '<div class="plugin-text' + (open ? '" style="max-height: none"' : ' clamp"') + '>' + text + '</div>' +
             '<button type="button" class="plugin-more" aria-expanded="' + open + '">' + (open ? p.less : p.more) + '</button>' : '') +
